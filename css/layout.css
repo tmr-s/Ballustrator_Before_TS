@@ -1,0 +1,472 @@
+@charset "utf-8";
+
+body::-webkit-scrollbar {
+  display: none;
+}
+div::-webkit-scrollbar {
+  display: none;
+}
+span::-webkit-scrollbar {
+  display: none;
+}
+ul::-webkit-scrollbar {
+  display: none;
+}
+body {
+  scrollbar-width: none;
+}
+div {
+  scrollbar-width: none;
+}
+span {
+  scrollbar-width: none;
+}
+ul {
+  scrollbar-width: none;
+}
+
+span.tabCommands {
+    height: 40px;
+    padding: 10px 10px 10px 10px;
+    margin-top: 10px;
+    vertical-align: bottom;
+}
+span.tabCommands:hover {
+    cursor: pointer;
+    background-color: lightgray;
+}
+span.hovers:hover {
+  cursor: pointer;
+}
+
+header {
+    z-index: 200;
+    height: 24px;
+  }
+  
+  ul.headermenu {
+    margin: 0px;
+    z-index: 200;
+    padding: 0px;
+    background-color: #aaaaaa;
+    letter-spacing: -.4em;
+  }
+  ul.headermenu li {
+    z-index: 200;
+    height: 24px;
+    display: inline-block;
+    position: relative;
+    background-color: #aaaaaa;
+    padding: 5px;
+    letter-spacing: normal;
+    border-right: 1.5px solid black;
+  }
+  ul.headermenu a {
+    text-align: center;
+    text-decoration: none;
+    display: block;
+    color: #000000;
+  }
+  ul.headermenu li:hover {
+    background-color: #1066ff;
+    color: #ffffff;
+    cursor: pointer;
+  }
+  ul.headermenu a:hover {
+    color: white;
+  }
+  ul.headermenu ul {
+    margin: 0px;
+    padding: 0px;
+    display: none;
+    position: absolute;
+  }
+  ul.headermenu li:hover > ul {
+    display: block;
+    margin-top: 6px;
+    margin-left: -5px;
+  }
+  ul.headermenu ul li {
+    width: 160px;
+    display: inline-block;
+    border-bottom: 1px solid white;
+    border-left: 1px solid black;
+    border-right: 1px solid black;
+    height: 24px;
+  }
+  ul.headermenu ul li:hover {
+    width: 176px;
+    height: 24px;
+  }
+  ul.headermenu ul li a {
+    display: inline-block;
+    height: 24px;
+    line-height: 24px;
+    width: 100%;
+    text-align: left;
+    padding-left: 5px;
+    font-weight: normal;
+    margin: 0;
+  }
+  ul.headermenu ul li div.headtitle {
+    position: relative;
+  }
+  ul.headermenu ul li div.headtitle::after {
+    position: absolute;
+    right: 10px;
+    content: "▶︎";
+  }
+  ul.headermenu ul li div.headtitle:hover::after {
+    right: 15px;
+  }
+  ul.headermenu ul li:hover {
+    background-color: #1066ff;
+  }
+  ul.headermenu ul ul {
+    margin: 0px;
+    padding: 0px;
+    display: none;
+    position: absolute;
+    top: -6.5px;
+    left: calc(100% - 10px);
+    border-left: 1px solid white;
+  }
+  
+  ul.headermenu li.headseparate {
+    width: 170px;
+    display:block;
+    background-color: #aaaaaa;
+    height: 2px;
+    padding: 0;
+  }
+  ul.headermenu li.headseparate:hover {
+    width: 170px;
+    display:block;
+    background-color: #aaaaaa;
+    height: 2px;
+    padding: 0;
+  }
+
+
+  label.inv {
+    display: inline-block;
+  }
+  label.invi {
+    display: inline-block;
+    vertical-align: middle;
+  }
+  input.playtab {
+    display: none;
+  }
+  input.fileUploader {
+    display: none;
+  }
+  input.playtab+div {
+    display: grid;
+    min-width: 100px;
+    height: 30px;
+    background-color: darkgray;
+    color: lightgray;
+    grid-template-columns: 10px 65px 25px;
+    border-right: 1px solid #333333;
+  }
+  input.playtab+div span.playname {
+    vertical-align: middle;
+    overflow: hidden;
+    grid-column-start: 2;
+  }
+  input.playtab+div span.batsu {
+    display: inline-block;
+    font-size: 24px;
+    line-height: 24px;
+    vertical-align: 50%;
+    display: none;
+    grid-column-start: 3;
+  }
+  input.playtab:hover+div span.batsu {
+    display: inline-block;
+    color: lightgray;
+  }
+  input.playtab:checked+div span.batsu {
+    display: inline-block;
+    color: white;
+  }
+  input.playtab:hover+div {
+    background-color: #666666;
+    color: #cccccc;
+  }
+  input.playtab:checked+div {
+    background-color: black;
+    color: white;
+  }
+  input.playtab+div:hover {
+    cursor: pointer;
+  }
+
+  input.combtn {
+    display: none;
+  }
+  img.circlebutton {
+    border-radius: 50%;
+    border: 1px solid black;
+    width: 30px;
+    height: 30px;
+  }
+  input.combtn:checked+img.circlebutton {
+    border: 2px solid blue;
+  }
+  img.circlebutton:hover {
+    cursor: pointer;
+  }
+
+  div.canvas {
+    position: relative;
+  }
+  canvas.layerCanvas {
+    position: absolute;
+  }
+span.detailspanp {
+  display: inline-block;
+  width: 150px;
+  height: 40px;
+  overflow-x: scroll;
+}
+span.detailspan {
+  white-space: nowrap;
+  height: 40px;
+}
+span.summarybutton {
+  float: right;
+}
+span.summarybutton:hover {
+  cursor: pointer;
+}
+summary {
+  position: relative;
+}
+span.detailname {
+  position: absolute;
+  top: 0px;
+}
+input.inputindetail {
+  position: absolute;
+  display: none;
+  height: 20px;
+}
+summary:active {
+  background-color: blue;
+}
+summary:focus {
+  background-color: #5188e6;
+  outline: none;
+}
+div:focus {
+  background-color: #5188e6;
+  outline: none;
+}
+span.noselect {
+  user-select: none;
+}
+div.canvas {
+  user-zoom: initial;
+}
+span {
+  user-select: none;
+}
+
+span.asdfg {
+  padding: 6px 6px 6px 6px;
+  border-radius: 6px;
+  font-size: 12px;
+  color: black;
+}
+span.asdfg:hover {
+  cursor: pointer;
+}
+input:checked+span.asdfg {
+  background-color: blue;
+  color: white;
+}
+input.imagelist {
+  display: none;
+}
+
+ul.collectionView li.imageCollectioncell {
+  position: relative;
+  display: block;
+  float: left;
+  width: 48px;
+  height: 48px;
+  border: 1px solid gray;
+  margin: 5px 5px 5px 5px;
+  padding: 1px 1px 1px 1px;
+  background-color: white;
+  text-align: center;
+}
+ul.collectionView input.imagelist:checked+li.imageCollectioncell {
+  border: 2px solid blue;
+  margin: 4px 4px 4px 4px;
+}
+ul.collectionView li.imageCollectioncell:hover {
+  cursor: pointer;
+}
+img.ximgx {
+  max-width: 100%;
+  max-height: 100%;
+}
+span.fileInput {
+  border: 1px solid black;
+  background-color: lightgray;
+  padding: 2px 8px 2px 8px;
+}
+span.fileInput:hover {
+  cursor: pointer;
+}
+
+input.textInCanvas {
+  background-color: transparent;
+}
+span.contextmenuSpan {
+  display: block;
+}
+span.contextmenuSpan:hover {
+  background-color: blue;
+  color: white;
+  cursor: pointer;
+}
+
+h3 {
+  margin-top: 1px;
+  margin-bottom: 5px;
+}
+
+div.abledDiv {
+  margin-left: 6px;
+}
+div.disabledDiv {
+  margin-left: 6px;
+  pointer-events: none;
+  opacity: 0.6;
+}
+div.squarebutton {
+  text-align: center;
+  padding: 8px 12px;
+  background-color: blue;
+  color: white;
+}
+div.squarebutton:hover {
+  cursor: pointer;
+}
+input+img.icon {
+  opacity: 0.5;
+}
+input:checked+img.icon {
+  opacity: 1;
+}
+img.icon:hover {
+  cursor: pointer;
+}
+img.icon:hover+span.smr {
+  display: inline-block;
+  vertical-align: bottom;
+}
+span.smr {
+  position: absolute;
+  font-size: 10px;
+  color: black;
+  display: none;
+  background-color: white;
+  padding: 2px;
+  border-radius: 2px;
+  border: 1px solid gray;
+  z-index: 15002;
+}
+div.layerDisplayCell {
+  display: grid;
+  position: relative;
+  grid-template-columns: 1fr 30px 30px;
+  background-color: white;
+  color: black;
+  border-bottom: 1px solid black;
+  height: 30px;
+}
+input:checked+div.layerDisplayCell {
+  background-color: #5188e6;
+  color: white;
+}
+input.layerChecker {
+  width: 20px;
+  height: 20px;
+  margin: 5px;
+}
+input.hierarchyRadio {
+  display: none;
+}
+input.hierarchycheck {
+  display: none;
+}
+input.hierarchycheck+div {
+  white-space: nowrap;
+  position: relative;
+  box-sizing: border-box;
+}
+input.hierarchyRadio:checked+input+div {
+  background-color: #5188e6;
+  color: white;
+}
+input.hierarchycheck+div::before {
+  content: "▶︎ ";
+}
+input.hierarchycheck:checked+div::before {
+  content: "▼ ";
+}
+div.hierarchyPlaylist {
+  width: 200px;
+  padding-left: 0px;
+}
+div.hierarchyPlay {
+  padding-left: 6px;
+}
+div.hierarchyFolder {
+  padding-left: 12px;
+}
+div.hierarchyObject {
+  padding-left: 18px;
+}
+div.hierarchyText {
+  padding-left: 18px;
+}
+div.hierarchyRoute {
+  padding-left: 25px;
+}
+
+img.bicon {
+  padding: 3px;
+  width: 24px;
+  height: 24px;
+  margin-right: 3px;
+}
+img.bicon:hover {
+  cursor: pointer;
+}
+
+table.sticky thead th {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  z-index: 103;
+}
+table.sticky th:first-child {
+  position: -webkit-sticky;
+  position: sticky;
+  left: 0;
+}
+table.sticky thead th:first-child {
+  z-index: 104;
+}
+table.sticky th {
+  background-color: #888888;
+}
+table.sticky thead th {
+  border-bottom: 1px solid black;
+}

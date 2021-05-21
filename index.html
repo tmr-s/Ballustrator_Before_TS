@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html style="width: 100%; height: 100vh;">
+    <head>
+        <meta charset="utf-8" />
+        <title>Ballustrator</title>
+        <link rel="icon" type="image/png" href="graph/icon/icon128.png" />
+        <link rel="shortcut icon" type="image/png" href="graph/icon/icon128.png" />
+        <link rel="apple-touch-icon" sizes="128x128" href="graph/icon/icon128.png" />
+        <link rel="stylesheet" type="text/css" href="css/layout.css" />
+    </head>
+    <body style="padding: 0; margin: 0;">
+    <form id="former" onsubmit="alert(1); const a = document.getElementsByClassName('inputindetail'); for(let i=0;i<a.length;i++) {a[i].style.display = 'none';}">
+<!------------------------------------------------------------------------------------------------------>
+<!------------------------------------------ファイルインプット・画像群----------------------------------------->
+        <div id="filedialogs" style="display: none;" hidden>
+            <input type="file" id="importplay">
+            <input type="file" id="openplist">
+            <input type="file" id="importplist">
+            <img id="graph/back/white.svg" src="graph/back/white.svg">
+            <img id="graph/back/line_clg.svg" src="graph/back/line_clg.svg">
+            <img id="graph/back/line_hs.svg" src="graph/back/line_hs.svg">
+            <img id="graph/back/line_pro.svg" src="graph/back/line_pro.svg">
+            <img id="graph/back/zero_clg.svg" src="graph/back/zero_clg.svg">
+            <img id="graph/back/zero_hs.svg" src="graph/back/zero_hs.svg">
+            <img id="graph/back/zero_pro.svg" src="graph/back/zero_pro.svg">
+            <img id="graph/back/num_clg.svg" src="graph/back/num_clg.svg">
+            <img id="graph/back/num_hs.svg" src="graph/back/num_hs.svg">
+            <img id="graph/back/num_pro.svg" src="graph/back/num_pro.svg">
+        </div>
+<!------------------------------------------------------------------------------------------------>
+<!------------------------------------------------------------------------------------------------>
+<!------------------------------------------------------------------------------------------------>
+<!------------------------------------------------------------------------------------------------>
+<!----------------------------------------------本体---------------------------------------------->
+<!------------------------------------------------------------------------------------------------>
+<!------------------------------------------------------------------------------------------------>
+        <div id="MainDiv" style="width: 100%; height: 100vh; display: grid; grid-template-rows: 40px 1fr; position: absolute; margin: 0px;">
+<!-------------------------------------------上部メニュー------------------------------------------->
+<!------------------------------------------------------------------------------------------------>
+            <div id="commandView" style="background-color: black;">
+                <header>
+                    <ul class="headermenu">
+                        <li><a>ファイル</a>
+                            <ul>
+                                <li><a><div class="headtitle">新規ファイル</div></a>
+                                    <ul>
+                                        <li><a id="A_File_newPL" href="#" target="_blank">新規プレイリスト</a></li>
+                                        <li><a id="A_File_newPlay">新規プレー</a></li>
+                                    </ul>
+                                </li>
+                                <li><a id="A_File_open">開く</a></li>
+                                <li class="headseparate"></li>
+                                <li><a id="A_File_save"><del>保存</del></a></li>
+                                <li><a id="A_File_saveAs">名前を付けて保存</a></li>
+                                <li><a id="A_File_saveAll"><del>全て保存</del></a></li>
+                                <li class="headseparate"></li>
+                                <li><a><div class="headtitle">インポート</div></a>
+                                    <ul>
+                                        <li><a id="A_File_importplist">プレイリスト</a></li>
+                                        <li><a id="A_File_importplay">プレー</a></li>
+                                    </ul>
+                                </li>
+                                <li><a><div class="headtitle">エクスポート</div></a>
+                                    <ul>
+                                        <li><a id="A_File_exportBRL">BRL</a></li>
+                                        <li><a id="A_File_exportBRP">BRP</a></li>
+                                        <li><a id="A_File_exportPDF"><del>PDF</del></a></li>
+                                        <li><a id="A_File_exportPNG">PNG</a></li>
+                                        <li><a id="A_File_exportJPEG">JPEG</a></li>
+                                        <li><a id="A_File_exportSVG">SVG</a></li>
+                                        <li class="headseparate"></li>
+                                        <li><a id="A_File_exportSPDF"><del>単ページPDF</del></a></li>
+                                        <li><a id="A_File_exportMPDF"><del>複数ページPDF</del></a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li><a>編集</a>
+                            <ul>
+                                <li><a id="A_Edit_undo">元に戻す</a></li>
+                                <li><a id="A_Edit_redo">やり直す</a></li>
+                                <li class="headseparate"></li>
+                                <li><a id="A_Edit_cut"><del>切り取り</del></a></li>
+                                <li><a id="A_Edit_copy"><del>コピー</del></a></li>
+                                <li><a id="A_Edit_paste"><del>貼り付け</del></a></li>
+                                <li><a id="A_Edit_delete">削除</a></li>
+                                <li><a id="A_Edit_selectAll">全てを選択</a></li>
+                                <li><a id="A_Edit_flip"><del>左右反転</del></a></li>
+                                <li><a><div class="headtitle">揃える</div></a>
+                                    <ul>
+                                        <li><a id="A_Edit_alignH">横一列</a></li>
+                                        <li><a id="A_Edit_alignV">縦一列</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li><a>表示</a>
+                            <ul>
+                                <li><a><div class="headtitle">拡大縮小</div></a>
+                                    <ul>
+                                        <li><a id="A_Display_100">100%</a></li>
+                                        <li class="headseparate"></li>
+                                        <li><a id="A_Display_1000">1000%</a></li>
+                                        <li><a id="A_Display_400">400%</a></li>
+                                        <li><a id="A_Display_200">200%</a></li>
+                                        <li><a id="A_Display_150">150%</a></li>
+                                        <li><a id="A_Display_125">125%</a></li>
+                                        <li class="headseparate"></li>
+                                        <li><a id="A_Display_80">80%</a></li>
+                                        <li><a id="A_Display_67">67%</a></li>
+                                        <li><a id="A_Display_50">50%</a></li>
+                                        <li><a id="A_Display_25">25%</a></li>
+                                        <li><a id="A_Display_10">10%</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <li><a>アニメーション</a><!--3-->
+                            <ul>
+                                <li><a id="A_Anime_Open">アニメビューを開く</a>
+                                </li>
+                                <li><a id="A_Anime_Close">アニメビューを閉じる</a></li>
+                                <li class="headseparate"></li>
+                                <li><a></a></li>
+                            </ul>
+                        </li>
+                        <li><a><del>アカウント</del></a><!--4-->
+                            <ul>
+                                <li></li>
+                            </ul>
+                        </li>
+                        <li><a>ヘルプ</a><!--5-->
+                            <ul>
+                                <li><a href="https://top.play-manager.cf/home/" target="_blank"><del>HP</del></a></li>
+                                <li><a href="https://docs.google.com/document/d/1Yl_tin2I_XEavXqhwOIdUPOM6yZYV0YTjXfOX3d81VE/edit?usp=sharing" target="_blank">操作説明</a></li>
+                                <li><a href="https://top.play-manager.cf/request/" target="_blank"><del>問い合わせ</del></a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <select style="position: absolute; top: 10px; right: 0px;">
+                        <option>日本語</option>
+                        <option><del>English</del></option>
+                    </select>
+                </header>
+            </div>
+<!------------------------------------------------------------------------------------------------>
+<!------------------------------------------------------------------------------------------------>
+<!-----------------------------------------------左メニュー------------------------------------------------>
+<!------------------------------------------------------------------------------------------------>
+            <div style="width: 100%; height: calc(100vh - 40px); background-color: #444444; display: grid; grid-template-rows: 30px 1fr 30px; grid-template-columns: 200px 1fr 200px;">
+                <div id="leftView" style="grid-row: span 3; user-select: none;">
+                    <div style="height: 30px; width: 200px; display: grid; grid-template-columns: 10px 1fr 1fr 1fr 1fr 1fr 10px; border-bottom: 2px solid #888888;">
+                        <span style="grid-column: span 1;"></span><label style="grid-column: span 1; height: 30px; text-align: center;"><input name="leftForm" type="radio" style="display: none;" id="leftHierarchy" checked><img src="graph/icon/hierarchy.svg" style="height: 30px;" class="icon"><span class="smr">階層表示</span></label>
+                        <span style="grid-column: span 1;"></span><label style="grid-column: span 1; height: 30px; text-align: center;"><input name="leftForm" type="radio" style="display: none;" id="leftLayers" ><img src="graph/icon/layers.svg" style="height: 30px;" class="icon"><span class="smr">レイヤー</span></label>
+                        <span style="grid-column: span 1;"></span><label style="grid-column: span 1; height: 30px; text-align: center;"><input name="leftForm" type="radio" style="display: none;" id="leftHistory" ><img src="graph/icon/history.svg" style="height: 30px;" class="icon"><span class="smr">履歴</span></label>
+                    </div>
+                    <label><input type="radio" class="hierarchyRadio" name="hierarchySelected"><div id="leftHierarchyDisplay" style="overflow: scroll; height: calc(100% - 30px); color: white;"></div></label>
+                    <div id="leftLayersDisplay" style="height: calc(100% - 30px); color: white; display: none;">
+                        <div style="height: 30px; display: grid; grid-template-columns: 1fr 30px 30px; border-bottom: 2px solid black;">
+                            <span style="grid-column: span 1; text-align: center; padding-top: 3px;">レイヤー名</span><img style="grid-column: span 1; width: 24px; height: 24px; margin: 3px 3px;" src="graph/icon/eye.svg"><img style="grid-column: span 1; width: 24px; height: 24px; margin: 3px 3px;" src="graph/icon/lock.svg">
+                        </div>
+                        <label>
+                            <input type="radio" style="display: none;" name="selectedLayer" value="-2" checked>
+                            <div style="height: calc(100% - 66px); overflow: scroll;" id="leftLayersDisplayBack">
+                                <div id="leftLayersDisplayBody" ></div>
+                                <label>
+                                    <input type="radio" style="display: none;" name="selectedLayer" value="-1">
+                                    <div class="layerDisplayCell" id="backBone">
+                                        <span style="grid-column: span 1; padding: 3px; width: 132px; overflow: scroll;">背景</span>
+                                        <label style=" border-left: 1px dashed black;"><input class="layerChecker" type="checkbox" style="grid-column: span 1;" checked disabled></label>
+                                        <label style=" border-left: 1px dashed black;"><input class="layerChecker" type="checkbox" style="grid-column: span 1;" checked disabled></label>
+                                    </div>
+                                </label>
+                                <div style="height: 20px;"></div>
+                            </div>
+                        </label>
+                        <div id="leftLayerFoot" style="height: 30px; border-top: 2px solid black;">
+                            <img src="graph/icon/plus.svg" class="bicon" id="layerPlusBtn">
+                            <img src="graph/icon/setting.svg" class="bicon" id="layerSettingBtn">
+                            <img src="graph/icon/trash.svg" class="bicon" id="layerDeleteBtn">
+                        </div>
+                    </div>
+                    <div id="leftHistoryDisplay" style="height: calc(100% - 30px); color: white; display: none;">
+                        <!---->
+                    </div>
+                </div>
+<!------------------------------------------------------------------------------------------------>
+<!------------------------------------------------------------------------------------------------>
+<!-----------------------------------------------プレーのタブ-------------------------------------------->
+<!------------------------------------------------------------------------------------------------>
+                <div id="tabView" style="grid-column: span 2; background-color: #888888; overflow-y: hidden; white-space: nowrap;">
+                    <div style="height: 50px; overflow-x: scroll; display: inline-block; vertical-align: middle;" id="playTabsDiv"></div>
+                </div>
+<!------------------------------------------------------------------------------------------------>
+<!--------------------------------------------キャンバス------------------------------------------->
+<!------------------------------------------------------------------------------------------------>
+                <div id="canvasView" style="grid-column: span 1; grid-row: span 1; background-color: lightgray; overflow: scroll; overflow-y: scroll; padding: 100px;">
+                    <label class="inv" style="position: absolute; top: 100px; left: 240px; z-index: 100;"><input type="checkbox"　name="comButton" style="display: none;" onclick="if(document.getElementById('comButtonsView').style.display === 'none') document.getElementById('comButtonsView').style.display = 'block'; else document.getElementById('comButtonsView').style.display = 'none';"><img id="comcom" class="circlebutton" src="graph/selectbox.png" style="width: 40px; height: 40px; z-index: 100;"></label>
+                    <div id="comButtonsView" style="position: absolute; top: 100px; left: 300px; display: none; z-index: 100;">
+                        <label class="inv"><input type="radio" name="comButton" class="combtn" value="0" checked><img class="circlebutton" src="graph/selectbox.png" id="comButton0"></label>
+                        <label class="inv"><input type="radio" name="comButton" class="combtn" value="1"><img class="circlebutton" src="graph/arrow.png" id="comButton1"></label>
+                        <label class="inv"><input type="radio" name="comButton" class="combtn" value="2"><img class="circlebutton" src="graph/move.png" id="comButton2"></label>
+                        <label class="inv"><input type="radio" name="comButton" class="combtn" value="3"><img class="circlebutton" src="graph/relation-256.png" id="comButton3"></label>
+                        <label class="inv"><input type="radio" name="comButton" class="combtn" value="4"><img class="circlebutton" src="graph/moveroute.png" id="comButton4"></label>
+                        <label class="inv"><input type="radio" name="comButton" class="combtn" value="5"><img class="circlebutton" src="graph/eraser128.png" id="comButton5"></label>
+                        <label class="inv"><input type="radio" name="comButton" class="combtn" value="6"><img class="circlebutton" src="graph/figure.png" id="comButton6"></label>
+                        <label class="inv"><input type="radio" name="comButton" class="combtn" value="7"><img class="circlebutton" src="graph/text.png" id="comButton7"></label>
+                        <label class="inv"><input type="radio" name="comButton" class="combtn" value="8"><img class="circlebutton" src="graph/lines.svg" id="comButton8"></label>
+                    </div>
+                    <div id="canvas" style="width: 1300px; height: 1200px;" class="canvas">
+                        <canvas id="bgCanvas" class="layerCanvas" style="z-index: 1;"></canvas>
+                        <span id="CanvaSpan" style="z-index: 2;">
+                        </span>
+                        <canvas id="uiCanvas" class="layerCanvas" width="1200px" height="1200px" style="z-index: 50;"></canvas>
+                    </div>
+                </div>
+<!------------------------------------------------------------------------------------------------>
+<!------------------------------------------------------------------------------------------------>
+<!-----------------------------------------------プレイリスト設定---------------------------------------------->
+<!-------------------------------------------------------------------------------------------------------->
+                <div id="SettingScreen" style="position: absolute; background-color: darkgray; top: 70px; left: 200px; width: calc(100% - 200px); height: calc(100% - 70px); z-index: 101; overflow: scroll; min-width: 400px;">
+                    <h3 style="color: white; margin-bottom: 16px;">プレイリストの設定</h3>
+                    <input type="text" id="playlist-name" style="margin-left: 5px; padding: 4px 6px; width: 200px;" placeholder="playlist" value="no name"><br /><br />
+                    <label><input type="checkbox" class="titlecheck" id="plSettingCh0" checked>新規プレー作成時に都度プレーの設定をする</label>
+                    <div class="disabledDiv" style="height: 300px; overflow-y: scroll; padding-left: 20px;" id="newPlayflagField">
+                        <span>プレー名</span><br />
+                        <input type="text" style="width: 200px; padding: 4px 6px;" placeholder="Play" id="plSettingI6" value="Play">
+                        <select style="height: 28px;" id="plSettingS4">
+                            <option value=1>1,10,100,...</option>
+                            <option value=2>01,10,100,...</option>
+                            <option value=3>001,010,100,...</option>
+                            <option value=4>0001,0010,...</option>
+                            <option value=5>00001,00010,...</option>
+                        </select><br />
+                        <span>紙面の余白(fts)</span><br />
+                        <input type="number" min=0 style="width: 50px; margin-left: 50px;" value=0 id="plSettingI0"><br />
+                        <input type="number" min=0 style="width: 50px;" value=0 id="plSettingI1">
+                        <input type="number" min=0 style="width: 50px; margin-left: 40px;" value=0 id="plSettingI2"><br />
+                        <input type="number" min=0 style="width: 50px; margin-left: 50px;" value=0 id="plSettingI3"><br />
+                        <span>ヤードライン</span><br />
+                        <select id="plSettingS0">
+                            <option value="0">None</option>
+                            <option value="1">Lines</option>
+                            <option value="2">00</option>
+                            <option value="3">Yard Num</option>
+                        </select><br />
+                        <span>ハッシュ種</span><br />
+                        <select id="plSettingS1">
+                            <option value="0">College - NCAA</option>
+                            <option value="1">High School</option>
+                            <option value="2">Pro - NFL</option>
+                        </select><br />
+                        <span>エンドゾーン</span><br />
+                        <select id="plSettingS2">
+                            <option value="0">None</option>
+                            <option value="1">Both</option>
+                            <option value="2">Top</option>
+                            <option value="3">Bottom</option>
+                        </select><br />
+                        <span>ヤード数(yds)</span><br />
+                        <input type="number" value=30 id="plSettingI4" min=1 max=100><br />
+                        <span>開始ヤード(yds)</span><br />
+                        <input type="number" value=0 id="plSettingI5" min=0 max=70><br />
+                        <span>背景色</span><br />
+                        <input type="color" id="plSettingC0" value="#ffffff"><br />
+                        <span>枠線の太さ</span><br />
+                        <select id="plSettingS3">
+                            <option value="1">Thin</option>
+                            <option value="2" selected>Medium</option>
+                            <option value="4">Thick</option>
+                        </select>
+                    </div>
+                    <div id="plSettingSaver" class="squarebutton" style="margin-top: 10px;">この設定をプレイリスト作成時のデフォルト設定にする</div>
+                </div>
+<!------------------------------------------　 アニメーション 　-------------------------------------------->
+                <div id="AnimationView" style="position: absolute; background-color: #808080; top: 40px; left: 200px; width: calc(100% - 200px); height: calc(100% - 40px); z-index: 102; min-width: 400px; display: none; flex-direction: column;">
+                    <div id="AnimationMenuBar" style="position: relative; width: 100%; height: 30px; padding-left: 2px; padding-top: 3px;">
+                        <img id="animationPlay" src="graph/icon/play.svg" style="width: 24px; height: 24px;">
+                        <img id="animationPause" src="graph/icon/pause.svg" style="width: 24px; height: 24px;">
+                        <img id="animationStop" src="graph/icon/stop.svg" style="width: 24px; height: 24px;">
+                    </div>
+                    <div id="AnimationMain" style="position: relative; width: 100%; flex: 1; overflow: scroll; padding-left: 5px; padding-top: 5px;">
+                        <!---->
+                    </div>
+                    <div id="AnimationLine" style="position: relative; width: 100%; height: 20px; background-color: black; color: white; display: flex; flex-direction: row;"><span>アニメーションシート</span><span style="flex: 1;"></span><span id="displayAS" class="hovers" style="padding-right: 10px; padding-left: 10px;" onclick="if(this.textContent === '▲') {this.textContent = '▼'; document.getElementById('AnimationSheet').style.display = 'block';} else {this.textContent = '▲'; document.getElementById('AnimationSheet').style.display = 'none';}">▼</span></div>
+                    <div id="AnimationSheet" style="position: relative; width: 100%; height: 100px; background-color: #888888; overflow: scroll;">
+                        <table class="sticky"　width="100px" style="background-color: #888888; table-layout: fixed;">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        <div style="width: 120px;"></div>
+                                    </th>
+                                    <th width="100">0</th>
+                                    <th>1</th>
+                                    <th>2</th>
+                                    <th>3</th>
+                                    <th>4</th>
+                                    <th>5</th>
+                                    <th>6</th>
+                                    <th>7</th>
+                                    <th>8</th>
+                                    <th>9</th>
+                                    <th>10</th>
+                                    <th>11</th>
+                                    <th>12</th>
+                                    <th>0</th>
+                                    <th>1</th>
+                                    <th>2</th>
+                                    <th>3</th>
+                                    <th>4</th>
+                                    <th>5</th>
+                                    <th>6</th>
+                                    <th>7</th>
+                                    <th>8</th>
+                                    <th>9</th>
+                                    <th>10</th>
+                                    <th>11</th>
+                                    <th>12</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th>left</th>
+                                    <td>data</td>
+                                    <td>data</td>
+                                    <td>data</td>
+                                    <td>data</td>
+                                    <td>data</td>
+                                    <td>data</td>
+                                    <td>data</td>
+                                    <td>data</td>
+                                    <td>data</td>
+                                    <td>data</td>
+                                    <td>data</td>
+                                    <td>data</td>
+                                    <td>data</td>
+                                </tr>
+                                <tr>
+                                    <th>left</th>
+                                    <td>data</td>
+                                    <td>data</td>
+                                    <td>data</td>
+                                    <td>data</td>
+                                    <td>data</td>
+                                    <td>data</td>
+                                    <td>data</td>
+                                    <td>data</td>
+                                    <td>data</td>
+                                    <td>data</td>
+                                    <td>data</td>
+                                    <td>data</td>
+                                    <td>data</td>
+                                    <td>data</td>
+                                    <td>data</td>
+                                    <td>data</td>
+                                    <td>data</td>
+                                    <td>data</td>
+                                    <td>data</td>
+                                    <td>data</td>
+                                </tr>
+                                <tr>
+                                    <th>left</th>
+                                    <td>data</td>
+                                    <td>data</td>
+                                    <td>data</td>
+                                    <td>data</td>
+                                    <td>data</td>
+                                    <td>data</td>
+                                    <td>data</td>
+                                    <td>data</td>
+                                    <td>data</td>
+                                    <td>data</td>
+                                    <td>data</td>
+                                    <td>data</td>
+                                    <td>data</td>
+                                </tr>
+                                <tr>
+                                    <th>left</th>
+                                    <td>data</td>
+                                    <td>data</td>
+                                    <td>data</td>
+                                    <td>data</td>
+                                    <td>data</td>
+                                    <td>data</td>
+                                    <td>data</td>
+                                    <td>data</td>
+                                    <td>data</td>
+                                    <td>data</td>
+                                    <td>data</td>
+                                    <td>data</td>
+                                    <td>data</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+<!----------------------------------------------------------------------------------------------------->
+<!----------------------------------------------------------------------------------------------------->
+<!----------------------------------------------  右メニュー  --------------------------------------------->
+<!----------------------------------------------------------------------------------------------------->
+                <div id="rightView" style="grid-row: span 2; background-color: pink; user-select: none;">
+                    <div id="rightTopView" style="height: 30px; border-bottom: 1px solid lightgray; display: flex; flex-direction: row; flex-wrap: nowrap; justify-content: space-around;">
+                        <label class="inv"><input name="rightMenu" type="radio" style="display: none;" id="canvasTabBtn" checked><span class="asdfg">play</span></label>
+                        <label class="inv"><input name="rightMenu" type="radio" style="display: none;" id="commandTabBtn"><span class="asdfg">command</span></label>
+                        <label class="inv"><input name="rightMenu" type="radio" style="display: none;" id="objectTabBtn"><span class="asdfg">object</span></label>
+                    </div>
+<!----------------------------------------------------------------------------------------------------->
+<!----------------------------------------------  プレー設定  ---------------------------------------->
+<!----------------------------------------------------------------------------------------------------->
+                    <div id="rightContView" style="height: calc(100% - 31px); overflow: scroll;">
+                        <div id="settingCanvas-text">
+                            <div id="rightContCanvas" style="overflow: scroll;">
+                                <span>紙面の余白(fts)</span><br />
+                                <input type="number" min=0 style="width: 50px; margin-left: 50px;" value=0 id="canvasSettingI0"><br />
+                                <input type="number" min=0 style="width: 50px;" value=0 id="canvasSettingI1">
+                                <input type="number" min=0 style="width: 50px; margin-left: 40px;" value=0 id="canvasSettingI2"><br />
+                                <input type="number" min=0 style="width: 50px; margin-left: 50px;" value=0 id="canvasSettingI3"><br /><br />
+                                <span>ヤードライン</span><br />
+                                <select id="canvasSettingS0">
+                                    <option value="0">なし</option>
+                                    <option value="1">線のみ</option>
+                                    <option value="2">線＋00</option>
+                                    <option value="3">線＋ヤード</option>
+                                </select><br /><br />
+                                <span>ハッシュ種</span><br />
+                                <select id="canvasSettingS1">
+                                    <option value="0">College - NCAA</option>
+                                    <option value="1">High School</option>
+                                    <option value="2">Pro - NFL</option>
+                                </select><br /><br />
+                                <span>エンドゾーン</span><br />
+                                <select id="canvasSettingS2">
+                                    <option value="0">なし</option>
+                                    <option value="1">両方</option>
+                                    <option value="2">上</option>
+                                    <option value="3">下</option>
+                                </select><br /><br />
+                                <span>ヤード数(yds)</span><br />
+                                <input type="number" value=30 id="canvasSettingI4" min=1 max=100><br /><br />
+                                <span>開始ヤード(yds)</span><br />
+                                <input type="number" value=0 id="canvasSettingI5" min=0 max=70><br /><br />
+                                <span>背景色</span><br />
+                                <input type="color" id="canvasSettingC0" value="#ffffff"><br /><br />
+                                <span>枠線の太さ</span><br />
+                                <select id="canvasSettingS3">
+                                    <option value="1">細い</option>
+                                    <option value="2" selected>普通</option>
+                                    <option value="4">太い</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div id="settingCanvas-visual">
+                            <!---->
+                        </div>
+<!----------------------------------------------------------------------------------------------------->
+<!----------------------------------------------  コマンド設定  ----------------------------------------->
+<!----------------------------------------------------------------------------------------------------->
+                        <div id="rightContCommand" style="display: none; overflow-y: scroll;">
+                            <div id="commander6">
+                                <h3>オブジェクト追加</h3>
+                                <div id="matomari">
+                                    <div id="matomariV" style="position: relative; width: 200px; text-align: center; overflow-x: hidden;">
+                                        <div style="width: 200px; height: 28px; box-sizing: border-box; margin-bottom: 0px; border: 2px solid black; border-bottom: 1px solid #888888; background-color: rgb(233, 51, 81); text-align: right;">
+                                            <img src="graph/icon/plus.svg" style="width: 24px; height: 24px;" class="icon">
+                                            <img src="graph/icon/copy.svg" style="width: 24px; height: 24px;" class="icon">
+                                            <img src="graph/icon/trash.svg" style="width: 24px; height: 24px;" class="icon">
+                                        </div>
+                                        <ul id="imagecollectionView" class="collectionView" style="position: relative; overflow-y: scroll; width: 186px; height: 250px; border: 2px solid black; border-top: 0px; padding: 5px 5px 5px 5px; margin-top: 0; margin-bottom: 2px;">
+                                            <label id="cVcId1label"><input type="radio" name="imagecellInput" class="imagelist" value='{"name":"circle","cov":0}' checked><li class="imageCollectioncell" draggable="true" id="cVcId1"><img class="ximgx" src="graph/circle-unfill.png"></li></label>
+                                            <label id="cVcId2label"><input type="radio" name="imagecellInput" class="imagelist" value='{"name":"circle","cov":4}'><li class="imageCollectioncell" draggable="true" id="cVcId2"><img class="ximgx" src="graph/circle-center.png"></li></label>
+                                            <label id="cVcId3label"><input type="radio" name="imagecellInput" class="imagelist" value='{"name":"circle","cov":1}'><li class="imageCollectioncell" draggable="true" id="cVcId3"><img class="ximgx" src="graph/circle-fill256.png"></li></label>
+                                            <label id="cVcId4label"><input type="radio" name="imagecellInput" class="imagelist" value='{"name":"circle","cov":3}'><li class="imageCollectioncell" draggable="true" id="cVcId4"><img class="ximgx" src="graph/circle-left.png"></li></label>
+                                            <label id="cVcId5label"><input type="radio" name="imagecellInput" class="imagelist" value='{"name":"circle","cov":5}'><li class="imageCollectioncell" draggable="true" id="cVcId5"><img class="ximgx" src="graph/circle-both256.png"></li></label>
+                                            <label id="cVcId6label"><input type="radio" name="imagecellInput" class="imagelist" value='{"name":"circle","cov":2}'><li class="imageCollectioncell" draggable="true" id="cVcId6"><img class="ximgx" src="graph/circle-right.png"></li></label>
+                                            <label id="cVcId7label"><input type="radio" name="imagecellInput" class="imagelist" value='{"name":"circle","cov":7}'><li class="imageCollectioncell" draggable="true" id="cVcId7"><img class="ximgx" src="graph/circle-dashed256.png"></li></label>
+                                            <label id="cVcId8label"><input type="radio" name="imagecellInput" class="imagelist" value='{"name":"square","cov":0}'><li class="imageCollectioncell" draggable="true" id="cVcId8"><img class="ximgx" src="graph/square-unfill256.png"></li></label>
+                                            <label id="cVcId9label"><input type="radio" name="imagecellInput" class="imagelist" value='{"name":"square","cov":1}'><li class="imageCollectioncell" draggable="true" id="cVcId9"><img class="ximgx" src="graph/square-fill256.png"></li></label>
+                                            <label id="cVcId10label"><input type="radio" name="imagecellInput" class="imagelist" value='{"name":"square","cov":3}'><li class="imageCollectioncell" draggable="true" id="cVcId10"><img class="ximgx" src="graph/square-left256.png"></li></label>
+                                            <label id="cVcId11label"><input type="radio" name="imagecellInput" class="imagelist" value='{"name":"square","cov":5}'><li class="imageCollectioncell" draggable="true" id="cVcId11"><img class="ximgx" src="graph/square-both256.png"></li></label>
+                                            <label id="cVcId12label"><input type="radio" name="imagecellInput" class="imagelist" value='{"name":"square","cov":2}'><li class="imageCollectioncell" draggable="true" id="cVcId12"><img class="ximgx" src="graph/square-right256.png"></li></label>
+                                            <label id="cVcId13label"><input type="radio" name="imagecellInput" class="imagelist" value='{"name":"square","cov":4}'><li class="imageCollectioncell" draggable="true" id="cVcId13"><img class="ximgx" src="graph/square-center256.png"></li></label>
+                                            <label id="cVcId14label"><input type="radio" name="imagecellInput" class="imagelist" value='{"name":"square","cov":6}'><li class="imageCollectioncell" draggable="true" id="cVcId14"><img class="ximgx" src="graph/square-X256.png"></li></label>
+                                            <label id="cVcId15label"><input type="radio" name="imagecellInput" class="imagelist" value='{"name":"triangle","cov":0}'><li class="imageCollectioncell" draggable="true" id="cVcId15"><img class="ximgx" src="graph/pl-Delta.png" style="transform: scale(1,-1);"></li></label>
+                                            <label id="cVcId16label"><input type="radio" name="imagecellInput" class="imagelist" value='{"name":"triangle","cov":1}'><li class="imageCollectioncell" draggable="true" id="cVcId16"><img class="ximgx" src="graph/pl-Delta-fill.png" style="transform: scale(1,-1);"></li></label>
+                                            <label id="cVcId17label"><input type="radio" name="imagecellInput" class="imagelist" value='{"name":"V","cov":0}'><li class="imageCollectioncell" draggable="true" id="cVcId17"><img class="ximgx" src="graph/pl-V.png"></li></label>
+                                            <label id="cVcId18label"><input type="radio" name="imagecellInput" class="imagelist" value='{"name":"X","cov":0}'><li class="imageCollectioncell" draggable="true" id="cVcId18"><img class="ximgx" src="graph/pl-X.png"></li></label>
+                                            <label id="cVcId19label"><input type="radio" name="imagecellInput" class="imagelist" value='{"name":"TEXT","cov":0}'><li class="imageCollectioncell" draggable="true" id="cVcId19"><img class="ximgx" src="graph/text.png"></li></label>
+                                        </ul>
+                                        <div id="fileDropView" style="position: absolute; display: none; top: 0; left: 0; width: 200px; height: 266px; opacity: 40%; background-color: darkgray;"></div>
+                                        <label><input type="file" id="imageCollectionUploader" class="fileUploader" multiple><span class="fileInput">画像ファイルを追加</span></label>
+                                    </div>
+                                    <span>主色</span><br />
+                                    <input type="color" id="commandSettingC0" value="#000000"><br />
+                                    <span>副色</span><br />
+                                    <input type="color" id="commandSettingC1" value="#ffffff"><br />
+                                    <label><input type="checkbox" id="commandSettingCh0"><span>上下反転</span></label><br />
+                                    <span>回転(°)</span><br />
+                                    <input type="number" id="commandSettingI0" value="0" min="-360" max="360" list="anglelist" style="width: 60px;">
+                                    <datalist id="anglelist">
+                                        <option value="0">0</option>
+                                        <option value="30">30</option>
+                                        <option value="45">45</option>
+                                        <option value="60">60</option>
+                                        <option value="90">90</option>
+                                        <option value="135">135</option>
+                                        <option value="180">180</option>
+                                        <option value="270">270</option>
+                                    </datalist><br />
+                                    <span>縦　　 　・　横　(fts)</span>
+                                    <input type="number" id="commandSettingI3" value="5" min="1" list="sizelist" style="width: 80px;">　<input type="number" id="commandSettingI4" value="5" min="1" list="sizelist" style="width: 80px;">
+                                    <datalist id="sizelist">
+                                        <option value="1">3</option>
+                                        <option value="5">5</option>
+                                        <option value="10">10</option>
+                                        <option value="30">30</option>
+                                    </datalist><br />
+                                    <span>レイヤー</span><br />
+                                    <select id="commandSettingS3">
+                                        <option value='-1'>--レイヤーを選択--</option>
+                                    </select><br />
+                                    <span>フォルダ</span><br />
+                                    <select id="commandSettingS4"></select><br />
+                                    <span>テキスト</span><br />
+                                    <input type="text" style="width: 150px; padding: 4px 6px; margin-left: 2px;" id="commandSettingI7">
+                                </div>
+                            </div>
+                            <div id="commander0" style="display: none;">
+                                <h3>選択</h3>
+                            </div>
+                            <div id="commander1" style="display: none;">
+                                <h3>ルート追加</h3>
+                                <span>線の種類</span><br />
+                                <select id="commandSettingS0">
+                                    <option value=0 selected>─────────────</option>
+                                    <option value=1>^^^^^^^^^^^^^</option>
+                                    <option value=2>〜〜〜〜〜〜〜〜</option>
+                                    <option value=3>・・・・・・・・</option>
+                                </select><br /><br />
+                                <span>先端</span><br />
+                                <select id="commandSettingS1">
+                                    <option value=0 selected>なし</option>
+                                    <option value=1>▲</option>
+                                    <option value=2>^</option>
+                                    <option value=3>-</option>
+                                    <option value=4>×</option>
+                                </select><br /><br />
+                                <span>色</span><br />
+                                <input type="color" value="#000000" id="commandSettingC2">
+                            </div>
+                            <div id="commander2" style="display: none;">
+                                <h3>移動</h3>
+                            </div>
+                            <div id="commander3" style="display: none;">
+                                <h3>結ぶ</h3>
+                                <span>関係性</span><br />
+                                <select id="commandSettingS7">
+                                    <option value="0">なし</option>
+                                    <option value="1">S</option>
+                                    <option value="2">逆S</option>
+                                    <option value="3">-----</option>
+                                </select><br /><br />
+                                <span>線の太さ</span><br />
+                                <select id="commandSettingS9">
+                                    <option value="1">細い</option>
+                                    <option value="2" selected>普通</option>
+                                    <option value="4">太い</option>
+                                </select><br /><br />
+                                <span>線の色</span><br />
+                                <input type="color" id="commandSettingC4" value="#000000"><br /><br />
+                                <span>間隔</span><br />
+                                <select id="commandSettingS10">
+                                    <option value="2">小</option>
+                                    <option value="5" selected>中</option>
+                                    <option value="8">大</option>
+                                </select><br /><br />
+                                <span>レイヤー</span><br />
+                                <select id="commandSettingS8">
+                                    <option value='-1'>--レイヤーを選択--</option>
+                                </select><br />
+                            </div>
+                            <div id="commander4" style="display: none;">
+                                <h3>ルート変更</h3>
+                                <label><input type="radio" name="grip-kind" id="commandSettingI5" value="0" checked>移動</label><br />
+                                <label><input type="radio" name="grip-kind" id="commandSettingI6" value="1">分岐・延長</label>
+                            </div>
+                            <div id="commander5" style="display: none;">
+                                <h3><del>消去</del></h3>
+                                <label><input type="checkbox" class="titlecheck" id="commandSettingCh3"><b>オブジェクト</b></label><br />
+                                <div id="deleteObjectSetting" class="disabledDiv">
+                                    <input type="checkbox">
+                                </div>
+                                <label><input type="checkbox" class="titlecheck" id="commandSettingCh4"><b>ルート</b></label><br />
+                                <div id="deleteRouteSetting" class="disabledDiv"></div>
+                                <label><input type="checkbox" class="titlecheck" id="commandSettingCh5"><b>テキスト</b></label>
+                                <div id="deleteTextSetting" class="disabledDiv"></div>
+                                <label><input type="checkbox" class="titlecheck" id="commandSettingCh8"><b>基準線</b></label>
+                                <div id="deleteBaseSetting" class="disabledDiv"></div>
+                            </div>
+                            <div id="commander7" style="display: none;">
+                                <h3>テキスト</h3>
+                                <span>フォント</span><br />
+                                <select id="commandSettingS2">
+                                    <option value="Arial, Helvetica, sans-serif" style="font-family: Arial, Helvetica, sans-serif;">Arial</option>
+                                    <option value="'Times New Roman', Times, serif" style="font-family: 'Times New Roman', Times, serif;">Times New Roman</option>
+                                    <option value="'YuGothic', 'Yu Gothic', 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif" style="font-family: 'YuGothic', 'Yu Gothic', 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;">游ゴシック体</option>
+                                </select><br />
+                                <label><input type="checkbox" id="commandSettingCh1">太字</label>　<label><input type="checkbox" id="commandSettingCh2">斜体</label><br />
+                                <span>サイズ</span><br />
+                                <select id="commandSettingS11">
+                                    <option value="75">特大</option>
+                                    <option value="40">大</option>
+                                    <option value="25" selected>中</option>
+                                    <option value="15">小</option>
+                                    <option value="5">特小</option>
+                                </select><br /><br />
+                                <span>色</span><br />
+                                <input id="commandSettingC3" type="color" value="#000000"><br />
+                                <span>回転(°)</span><br />
+                                <input type="number" id="commandSettingI1" value="0" style="width: 60px;" list="anglelist"><br /><br />
+                                <span>本文</span><br />
+                                <input id="commandSettingI2" type="text" style="width: 180px; padding: 4px 6px; margin-left: 2px;" placeholder="テキスト(改行不可)"><br /><br />
+                                <span>レイヤー</span><br />
+                                <select id="commandSettingS5">
+                                    <option value='-1'>--レイヤーを選択--</option>
+                                </select><br />
+                                <span>フォルダ</span><br />
+                                <select id="commandSettingS6"></select><br />
+                            </div>
+                            <div id="commander8">
+                                <h3>基準線</h3><br />
+                                <label><input type="checkbox" id="commandSettingCh6">縦</label><br /><br />
+                                <label><input type="checkbox" id="commandSettingCh7" checked>横</label>
+                            </div>
+                        </div>
+<!----------------------------------------------------------------------------------------------------->
+<!-------------------------------------------  オブジェクト設定  ----------------------------------------->
+<!----------------------------------------------------------------------------------------------------->
+                        <div id="rightContObject" style="display: none;">
+                        </div>
+                    </div>
+                </div>
+<!----------------------------------------------------------------------------------------------------->
+<!--------------------------------------------------  足元  -------------------------------------------->
+<!----------------------------------------------------------------------------------------------------->
+                <div id="statusView" style="background-color: gray; vertical-align: middle;">
+                    <input type="number" id="scalingInput" value="100" style="width: 60px;" min="10" max="1000">% <input type="range" name="scalingrange" min="0" max="10" value="5">
+                </div>
+            </div>
+        </div>
+<!----------------------------------------------------------------------------------------------------->
+<!---------------------------------------------右クリックいろいろ----------------------------------------->
+<!----------------------------------------------------------------------------------------------------->
+        <div id="contextmenuView" style="position: absolute; width: 100%; height: 100%; z-index: 1000; display: none;" onclick="this.style.display = 'none';">
+            <div id="playlistsummarybtn" style="position: absolute; width: 160px; height: 100px; z-index: 10000; background-color: rgb(226, 248, 182); border: 1px solid black; border-radius: 5px; overflow: hidden;">
+                <span class="contextmenuSpan" id="openSettingMenu">設定を開く</span>
+                <span class="contextmenuSpan" id="changelistnameMenu"><del>名前の変更</del></span>
+                <span class="contextmenuSpan" id="createNewPlayMenu">新規プレー作成</span>
+            </div>
+            <div id="playsummarybtn" style="position: absolute; width: 160px; height: 100px; z-index: 10000; background-color: rgb(226, 248, 182); border: 1px solid black; border-radius: 5px; overflow: hidden;">
+                <span class="contextmenuSpan" id="openPlayMenu">開く</span>
+                <span class="contextmenuSpan" id="createNewFolderMenu">新規フォルダ作成</span>
+                <span class="contextmenuSpan" id="deletePlayMenu">削除</span>
+            </div>
+            <div id="foldersummarybtn" style="position: absolute; width: 160px; height: 100px; z-index: 10000; background-color: rgb(226, 248, 182); border: 1px solid black; border-radius: 5px; overflow: hidden;">
+                <span class="contextmenuSpan" id="selectFolderMenu">選択</span>
+                <span class="contextmenuSpan" id="deleteFolderMenu">削除</span>
+            </div>
+            <div id="objsummarybtn" style="position: absolute; width: 160px; height: 100px; z-index: 10000; background-color: rgb(226, 248, 182); border: 1px solid black; border-radius: 5px; overflow: hidden;">
+                <span class="contextmenuSpan" id="selectObjectMenu">選択</span>
+                <span class="contextmenuSpan" id="deleteObjectMenu">削除</span>
+            </div>
+            <div id="txtsummarybtn" style="position: absolute; width: 160px; height: 100px; z-index: 10000; background-color: rgb(226, 248, 182); border: 1px solid black; border-radius: 5px; overflow: hidden;"></div>
+        </div>
+<!--                                                                                            -->
+<!--                                           画面                                              -->
+<!--                                                                                            -->
+        <div id="drawNewObject" style="position: absolute; width: 100%; height: 100%; z-index: 1000; display: none;"></div>
+        </form>
+        <div id="createPlayView" style="position: absolute; width: 100%; height: 100%; z-index: 1000; display: none; box-sizing: border-box; padding-left: 150px; padding-top: 150px; padding-right: 150px; padding-bottom: 150px;">
+            <div style="width: 100%; height: 100%; background-color: white; overflow: scroll; border: 2px solid black;">
+                <h3>新規プレー作成</h3><br />
+                <form id="newPlayForm" action="javascript: form();" method="POST">
+                    <span>プレー名</span><br />
+                    <input name="play_name" type="text" style="padding: 6px 10px; margin-left: 5px;"><br />
+                    <span>余白(fts)</span><br />
+                    <input name="margin_top" type="number" style="margin-left: 60px; width: 80px;" value=0 min=0><br />
+                    <input name="margin_left" type="number" style="margin-left: 5px; width: 80px;" value=0 min=0><input name="margin_right" type="number" style="margin-left: 30px; width: 80px;" value=0 min=0><br />
+                    <input name="margin_bottom" type="number" style="margin-left: 60px; width: 80px;" value=0 min=0><br />
+                    <span>ヤードライン</span><br />
+                    <select name="yardline" style=" margin-left: 5px;">
+                        <option value=0>なし</option>
+                        <option value=1>線のみ</option>
+                        <option value=2>線＋00</option>
+                        <option value=3>線＋ヤード</option>
+                    </select><br />
+                    <span>ハッシュ種</span><br />
+                    <select name="hash" style=" margin-left: 5px;">
+                        <option value=0>College - NCAA</option>
+                        <option value=1>High School</option>
+                        <option value=2>Pro - NFL</option>
+                    </select><br />
+                    <span>エンドゾーン</span><br />
+                    <select name="endzone" style=" margin-left: 5px;">
+                        <option value=0>なし</option>
+                        <option value=1>両方</option>
+                        <option value=2>上</option>
+                        <option value=3>下</option>
+                    </select><br />
+                    <span>ヤード数</span><br />
+                    <input type="number" value=30 min=1 max=100 name="yards" style="margin-left: 5px;"><br />
+                    <span>開始ヤード</span><br />
+                    <input type="number" value=0 min=0 max=99 name="start" style="margin-left: 5px;"><br />
+                    <span>背景色</span><br />
+                    <input type="color" name="backcolor" style=" margin-left: 5px;" value="#ffffff"><br />
+                    <span>枠線の太さ</span><br />
+                    <select name="width" style=" margin-left: 5px;">
+                        <option value=1>細い</option>
+                        <option value=2 selected>普通</option>
+                        <option value=4>太い</option>
+                    </select>
+                    <br /><br />
+                    <label>
+                        <input type="submit" style="display: none;">
+                        <span style="background-color: rgb(82, 82, 255); color: white; padding: 10px 6px;">作成</span>
+                    </label>
+                </form>
+            </div>
+        </div>
+        <span id="ruler" style="visibility:hidden;position:absolute;white-space:nowrap;"></span>
+        <script>function form() {return false;}</script>
+        <script defer src="dist/main.js"></script>
+    </body>
+</html>
